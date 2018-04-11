@@ -19,6 +19,7 @@ services:
         build:
                 context: ./database
         volumes:
+            - ../../data:/usr/src/data
             - ../../.data:/var/lib/postgresql/data
         environment:
                 POSTGRES_PASSWORD: root
