@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+    http:
+        build:
+            context: ./http
+        volumes:
+            - ../../moodle:/var/www/html/moodle
+            - ../../moodledata:/var/www/moodledata
+        ports:
+            - "80:80"
+        networks:
+            - network
+        links:
+            - database
+        depends_on:
+            - database
+    database:
+        build:
+                context: ./database
+        volumes:
+            - ../../.data:/var/lib/postgresql/data
+        environment:
+                POSTGRES_PASSWORD: root
+        networks:
+            - network
+networks:
+    network:
