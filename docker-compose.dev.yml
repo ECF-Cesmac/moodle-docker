@@ -5,8 +5,8 @@ services:
         build:
             context: ./http
         volumes:
-            - ../../moodle:/var/www/html/moodle
-            - ../../moodledata:/var/www/moodledata
+            - ./moodle:/var/www/html/moodle
+            - ./moodledata:/var/www/moodledata
         ports:
             - "80:80"
         networks:
@@ -15,17 +15,15 @@ services:
             - database
         depends_on:
             - database
-        restart: always
     database:
         build:
                 context: ./database
         volumes:
-            - ../../data:/usr/src/data
-            - ../../.data:/var/lib/postgresql/data
+            - ./data:/usr/src/data
+            - ./.data:/var/lib/postgresql/data
         environment:
                 POSTGRES_PASSWORD: root
         networks:
             - network
-        restart: always
 networks:
     network:
