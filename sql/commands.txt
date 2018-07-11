@@ -1,7 +1,0 @@
-# select course, catories and context;
-
-SELECT c.id, c.fullname, c.category, cc.id, cc.name, co.id, co.contextlevel, co.instanceid FROM mdl_course AS c INNER JOIN mdl_course_categories AS cc ON c.category=cc.id INNER JOIN mdl_context AS co ON co.instanceid=cc.id WHERE (cc.id > 14 AND co.contextlevel=40 ORDER BY cc.name);
-
-# select last user access
-
-SELECT u.id, u.firstname, c.id, c.fullname, ul.id, ul.timeaccess FROM mdl_user AS u INNER JOIN mdl_user_lastaccess AS ul ON ul.userid=u.id INNER JOIN mdl_course AS c ON ul.courseid=c.id;
